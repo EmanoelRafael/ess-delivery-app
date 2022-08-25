@@ -1,0 +1,26 @@
+{
+  "name": "ess-delivery-app",
+  "version": "1.0.0",
+  "description": "Repositório para gerenciamento do projeto da disciplina de Engenharia de Software e Sistemas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErickCassio/ess-delivery-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErickCassio/ess-delivery-app/issues"
+  },
+  "homepage": "https://github.com/ErickCassio/ess-delivery-app#readme",
+  "dependencies": {
+    "next": "^12.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
