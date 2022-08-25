@@ -31,10 +31,11 @@ Feature: "Notificação de Confirmacao de Pedido"
         And na janela "Confirmar Pedido" eu clico no botão "Sim"
         Then Uma janela com uma mensagem informando que não foi possivel realizar o pedido aparece na tela
 
-    Scenario: "Confirmação de Cancelamento de Pedido não Enviada por Pedido já ter Saído Para Entrega"
+    Scenario: "Confirmação de Cancelamento de Pedido não Enviada por Email Inválido"
         Given Eu estou na página de "Histórico de Pedidos" logado como "Emanoel Rafael"
-        And Tenho o email "emanoelrafael2020@gmail.com" cadastrado
+        And Tenho o email "emanoelrafael2020@cin.ufpe.br" cadastrado
         And Tenho um pedido "Galaxy Tab S7 FE" realizado e em andamento
         When Eu clico no botão "Cancelar Pedido"
         And Na janela "Confirmar Cancelamento de Pedido" eu clico no botão "Sim"
-        Then Uma janela com uma mensagem informando que o pedido já saiu para a entrega no destino aparece na tela
+        Then Uma janela com uma mensagem informando que não foi possivel cancelar o pedido devido ao email inválido
+
