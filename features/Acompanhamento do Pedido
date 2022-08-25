@@ -1,0 +1,45 @@
+Feature Acompanhamento do pedido
+
+    As a cliente com um pedido realizado
+    I want to acompanhar status e o andamento do pedido
+    So That Eu vejo o status do pedido e o tempo estimado de entrega
+   
+    Scenario Visualizando o status do pedido
+        Given Eu fiz uma compra
+        And Quero saber qual o status do meu pedido
+        When Eu acesso a página Acompanhamento do pedido
+        Then Eu consigo ver o status atual do pedido.
+        
+    Scenario Visualizando data estimada da entrega
+        Given Eu fiz uma compra
+        And Quero saber qual a data estimada para a entrega
+        When Eu acesso a página Acompanhamento do pedido
+        then eu consigo ver a data estimada para a entrega
+        
+    Scenario Visualizando Nota Fiscal
+        Given Eu fiz uma compra
+        And Quero ver a nota fiscal do pedido
+        When Eu acesso a página Acompanhamento do pedido
+        and clico em Visualizar Nota Fiscal
+        then faz o download da nota fiscal do produto
+        
+    Scenario Ver detalhes da entrega
+        Given Eu fiz uma compra
+        And Quero ver os detalhes da entrega
+        When Eu acesso a página Acompanhamento do pedido
+        and clico em Site da transportadora
+        then abre o site da transportadora no qual estão todos os detalhes.
+        
+    Scenario Progresso Status do Pedido
+        Given Eu fiz uma compra
+        And Quero ver os detalhes da entrega
+        When Eu acesso a página Acompanhamento do pedido
+        and Todos os icons checklist estão verdes
+        then o pedido foi entregue
+        
+    Scenario Voltar Para os meus pedidos
+        Given Eu estou na página Acompanhamento do pedido
+        and quero voltar para a página meus pedidos
+        when Eu estou na página Acompanhamento do pedido
+        and clico em meus pedidos
+        then sou encaminhado para a página meus pedidos
