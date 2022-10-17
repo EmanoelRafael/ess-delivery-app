@@ -2,5 +2,5 @@
 Repositório para gerenciamento do projeto da disciplina de Engenharia de Software e Sistemas.
 
 ## Tecnologias Utilizadas
-* React.js
-* Next.js
+* Angular
+* Node.js
