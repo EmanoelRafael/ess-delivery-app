@@ -39,7 +39,7 @@ taserver.get('/cart', function (req: express.Request, res: express.Response) {
 
 taserver.get('/email', function (req: express.Request, res: express.Response) {
   res.send(JSON.stringify(service.getClient(0).getEmail()));
-})
+}) 
 
 taserver.listen(3000, function () {
   console.log('Example app listening on port 3000!!!');

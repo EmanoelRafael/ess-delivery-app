@@ -7,34 +7,23 @@
             <th class="prizeColumn">Preço</th>
             <th class="quantityColumn">QTD</th>
         </tr>
-        
-        <!--<tr class="productLine">
-            <td class="imageColumn"></td>
-            <td class="productColumn">Projetor Blulory</td>
-            <td class="prizeColumn">R$233,50</td>
-            <td class="quantityColumn">1</td>
-        </tr>
-        <tr class="productLine">
-            <td class="imageColumn"></td>
-            <td class="productColumn">Galaxy Tab S7 FE</td>
-            <td class="prizeColumn">R$99,90</td>
-            <td class="quantityColumn">2</td>
-        </tr>
-        <tr class="productLine">
-            <td class="imageColumn"></td>
-            <td class="productColumn">Echo Dot 4 Gen</td>
-            <td class="prizeColumn">R$47,00</td>
-            <td class="quantityColumn">1</td>
-        </tr>-->
-        <!-- Aqui deverao ser listados todos os produtos -->
+
         <tr class="productLine" *ngFor="let product of cart.products">
             <td class="imageColumn"><img class="productImage" src="../assets/exampleProduct.jpg" alt=""></td>
             <td class="productColumn" >{{product[0].name}}</td>
-            <td class="prizeColumn" >{{product[0].price}}</td>
+            <td class="prizeColumn" >{{product[0].priceString}}</td>
             <td class="quantityColumn" >{{product[1]}}</td>
+        </tr>
+        <tr class="shippingLine">
+            <td class="labelColumn" colspan="2">Frete</td>
+            <td class="valueColumn" colspan="2">{{cart.stringShipping}}</td>
+        </tr>
+        <tr class="totalLine">
+            <td class="labelColumn" colspan="2">Total</td>
+            <td class="valueColumn" colspan="2">{{cart.stringValue}}</td>
         </tr>
     </table>
    
-    <button class="buyButton">Finalizar Compra</button>
+    <button class="buyButton" routerLink="/confirm">Finalizar Compra</button>
 </div>
 </html>
