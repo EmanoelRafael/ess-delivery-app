@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart.component';
 import { StoreService } from './store.service';
+import { ConfirmComponent } from './confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CartComponent
+    CartComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,10 @@ import { StoreService } from './store.service';
       {
         path: 'cart',
         component: CartComponent
+      },
+      {
+        path: 'confirm',
+        component: ConfirmComponent
       }
     ])
   ],
