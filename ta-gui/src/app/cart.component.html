@@ -9,7 +9,7 @@
         </tr>
 
         <tr class="productLine" *ngFor="let product of cart.products">
-            <td class="imageColumn"><img class="productImage" src="../assets/exampleProduct.jpg" alt=""></td>
+            <td class="imageColumn"><img class="productImage" src="../assets/{{product[0].pictureName}}" alt=""></td>
             <td class="productColumn" >{{product[0].name}}</td>
             <td class="prizeColumn" >{{product[0].priceString}}</td>
             <td class="quantityColumn" >{{product[1]}}</td>
