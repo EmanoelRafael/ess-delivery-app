@@ -1,3 +1,4 @@
+import { Product } from "../common/product";
 import { Address } from "../common/address";
 import { Card } from "../common/card";
 import { Cart } from "../common/cart";
@@ -34,4 +35,7 @@ export class Client {
         return this.email;
     }
     
+    public addOrder(paymentMethod: string, deliveryDate: string) : void {
+        this.orders.push(new Order(this.cart, paymentMethod, deliveryDate))
+    }
 }

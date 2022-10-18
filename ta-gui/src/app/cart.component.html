@@ -2,12 +2,13 @@
 <div class="cart">
     <table class="cartTable">
         <tr class="labelLine">
-            <td class="imageColumn"></td>
-            <td class="productColumn">Produto</td>
-            <td class="prizeColumn">Preço</td>
-            <td class="quantityColumn">QTD</td>
+            <th class="imageColumn"></th>
+            <th class="productColumn">Produto</th>
+            <th class="prizeColumn">Preço</th>
+            <th class="quantityColumn">QTD</th>
         </tr>
-        <tr class="productLine">
+
+        <!--<tr class="productLine">
             <td class="imageColumn"></td>
             <td class="productColumn">Projetor Blulory</td>
             <td class="prizeColumn">R$233,50</td>
@@ -24,8 +25,14 @@
             <td class="productColumn">Echo Dot 4 Gen</td>
             <td class="prizeColumn">R$47,00</td>
             <td class="quantityColumn">1</td>
-        </tr>
+        </tr>-->
         <!-- Aqui deverao ser listados todos os produtos -->
+        <tr class="productLine" *ngFor="let a of cart.getProducts()">
+            <td class="imageColumn"><img src="../assets/exampleProduct.jpg" alt=""></td>
+            <td class="productColumn" >{{a[0].getName()}}</td>
+            <td class="prizeColumn" >{{a[0].getPrice}}</td>
+            <td class="quantityColumn" >{{a[1]}}</td>
+        </tr>
     </table>
 
     <button class="buyButton">Finalizar Compra</button>
