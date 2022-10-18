@@ -98,3 +98,16 @@
 
     background: none;
 }
+
+.confirmWindow{
+    width: 998px;
+    height: 477px;
+    background-color: rgba(11, 223, 227, 1);
+    border: 5px;
+    border-color: black;
+    border-style: groove;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

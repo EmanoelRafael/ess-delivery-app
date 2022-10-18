@@ -4,6 +4,8 @@ import { Product } from "../common/product";
 export class Cart {
     products: Array<[Product,number]>;
     value: number;
+    stringValue: string;
+    stringShipping: string;
     empty: boolean;
     shipping: number;
     deliveryAddress: Address;
@@ -12,8 +14,10 @@ export class Cart {
     constructor() {
         this.products = Array<[Product,number]> ();
         this.value = 0;
+        this.stringValue = "";
         this.empty = true;
         this.shipping = 0;
+        this.stringShipping = this.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         this.deliveryAddress = new Address();
     }
 
@@ -24,6 +28,7 @@ export class Cart {
     public addProduct(product: Product, qtd: number): void{
         this.products.push([product,qtd]);
         this.value += (qtd*product.getPrice());
+        this.stringValue = this.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         if (this.empty) {
             this.empty = false;
         }
