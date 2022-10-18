@@ -14,8 +14,6 @@ service.addProduct("Projetor Blulory",659.00,"Com 4K 1200 Lux e UHD Nativo 1280*
 service.addProduct("Galaxy Tab S7 FE",3719.00,'TABLET SAMSUNG T735 com 4G e memoria RAM, 12.4", 128GB de memoria interna. Cor: PRETO MAN',"exampleProduct.jpg");
 service.addProduct("Smart TV Samsung",5299.00,"Smart TV Samsung 50 polegadas UHD 4K 2021","exampleProduct.jpg");
 
-/*service.getClient(0).getCart().addProduct(service.getProduct(0),1);
-service.updateDB("c");*/
 service.addProductClient(0,0,1);
 service.addProductClient(0,1,2);
 service.addProductClient(0,2,1);

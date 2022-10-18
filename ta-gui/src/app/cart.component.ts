@@ -1,5 +1,8 @@
 import { Component, OnInit} from '@angular/core'
+import { NgModule } from '@angular/core';
+
 import { Cart } from '../../../common/cart';
+import { Product } from '../../../common/product';
 import { StoreService } from './store.service';
 
 @Component({
@@ -12,11 +15,11 @@ export class CartComponent implements OnInit {
     constructor(private storeService: StoreService) {};
 
     cart: Cart = new Cart();
-    
-    title = 'cart';
 
     ngOnInit(): void {
-        this.storeService.getCart().subscribe(res => {this.cart = res}, msg => { alert(msg.message)})
-        throw new Error('Method not implemented.');
+        this.storeService.getCart().subscribe(res => {
+            this.cart = res
+        })
+        
     }
 }

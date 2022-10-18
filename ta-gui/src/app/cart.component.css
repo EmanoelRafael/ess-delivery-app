@@ -29,6 +29,11 @@
     padding: 10px;
 }
 
+.productImage{
+    width: 100px;
+    height: 100px;
+}
+
 .productColumn{
     width: 300px;
     background: none;
