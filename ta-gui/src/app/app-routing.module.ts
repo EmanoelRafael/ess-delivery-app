@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcompedidosComponent } from './acompedidos/acompedidos.component';
-import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  {path: 'acompedidos', component: AcompedidosComponent}
+  {path: 'acompedidos', component: AcompedidosComponent},
+  {path: 'cart', component: CartComponent},
+  {path: 'confirm', component: ConfirmComponent},
 ];
 
 @NgModule({

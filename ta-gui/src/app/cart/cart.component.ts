@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core'
 import { NgModule } from '@angular/core';
 
-import { Cart } from '../../../common/cart';
-import { StoreService } from './store.service';
+import { Cart } from '../../../../common/cart';
+import { StoreService } from './../store.service';
 
 @Component({
     selector: 'cart',

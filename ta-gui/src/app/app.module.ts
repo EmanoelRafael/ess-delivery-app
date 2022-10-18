@@ -6,9 +6,9 @@ import { RouterModule }   from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CartComponent } from './cart.component';
+import { CartComponent } from './cart/cart.component';
 import { StoreService } from './store.service';
-import { ConfirmComponent } from './confirm.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +21,6 @@ import { ConfirmComponent } from './confirm.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: 'cart',
-        component: CartComponent
-      },
-      {
-        path: 'confirm',
-        component: ConfirmComponent
-      }
-    ])
   ],
   providers: [StoreService],
   bootstrap: [AppComponent]
