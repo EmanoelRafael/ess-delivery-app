@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core'
 import { NgModule } from '@angular/core';
+import { RouterModule } from "@angular/router";
 
 import { Cart } from '../../../../common/cart';
 import { StoreService } from './../store.service';

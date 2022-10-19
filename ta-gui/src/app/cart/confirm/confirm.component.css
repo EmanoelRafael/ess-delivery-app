@@ -1,12 +1,13 @@
 .confirmWindow{
-    width: 998px;
-    height: 477px;
+    width: 948px;
+    height: 427px;
     background-color: rgba(11, 223, 227, 1);
     border: 5px;
     border-color: black;
     border-style: groove;
+    border-radius: 40px;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
 }
