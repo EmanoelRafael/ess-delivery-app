@@ -52,12 +52,14 @@
     <div class="orderCod">Codigo do Pedido: {{order.code}}</div>
     <div class="emoji">😊</div>
     <span class="thanks">Obrigado por usar a <i>Fast&Ship</i></span>
+    <button class="myOrdersButton" routerLink="/">Ir Para Meus Pedidos</button>
 </div>
 
 <div class="confirmation" *ngIf="orderMade&&(!orderConfirmed)">
     <h1 class="informMsg">Pedido Negado!</h1>
     <div class="emoji">😟</div>
     <span class="sorry">Não foi possivel realizar o seu pedido.</span>
+    <button class="leaveButton" routerLink="/">Sair</button>
 </div>
 
 </html>

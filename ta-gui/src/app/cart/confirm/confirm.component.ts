@@ -25,6 +25,7 @@ export class ConfirmComponent implements OnInit {
     console.log(!this.orderMade);
 
     this.orderConfirmed = false;
+    this.order.setCode("AOPA95X");
     return this.orderMade;
   }
 

@@ -21,4 +21,8 @@ export class Order {
     public setDeliveryDate(date: string): void{
         this.deliveryDate = date;
     }
+
+    public setCode(code: string): void{
+        this.code = code;
+    }
 }

@@ -162,10 +162,46 @@
     text-align: center;
     font-size: 20px;
     font-style: bold;
+
+    left: 170px;
+    background-color: rgba(202, 246, 253, 1);
+}
+
+.myOrdersButton{
+    position: absolute;
+    top: 351px;
+
+    border: 1px groove black;
+
+    border-radius: 40px;
+    width: 200px;
+    height: 25px;
+    text-align: center;
+    font-size: 15px;
+    font-style: bold;
+
+    left: 570px;
+    background-color: rgba(202, 246, 253, 1);
+}
+
+.leaveButton{
+    position: absolute;
+    top: 351px;
+
+    border: 1px groove black;
+
+    border-radius: 40px;
+    width: 200px;
+    height: 25px;
+    text-align: center;
+    font-size: 15px;
+    font-style: bold;
+
+    background-color: rgba(202, 246, 253, 1);
 }
 
 .sorry{
     position: absolute;
-    top: 350px;
+    top: 300px;
     font-size: 20px;
 }
