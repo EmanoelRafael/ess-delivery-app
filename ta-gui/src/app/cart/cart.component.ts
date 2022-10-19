@@ -15,14 +15,10 @@ export class CartComponent implements OnInit {
     constructor(private storeService: StoreService) {};
 
     cart: Cart = new Cart();
-    value: string = this.cart.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-    shipping: string = this.cart.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-
+ 
     ngOnInit(): void {
         this.storeService.getCart().subscribe(res => {
             this.cart = res
-            this.value = this.cart.value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-            this.shipping = this.cart.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         })
     }
 }

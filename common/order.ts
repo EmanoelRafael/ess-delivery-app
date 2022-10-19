@@ -5,6 +5,7 @@ export class Order {
     orderedDate: string;
     deliveryDate: string;
     paymentMethod: string;
+    code: string;
     status: string;
 
     constructor(cart: Cart, paymentMethod: string, deliveryDate: string) {
@@ -13,6 +14,7 @@ export class Order {
         this.orderedDate = ""+String(date.getDay()).padStart(2,'0')+"/"+String(date.getMonth()).padStart(2,'0')+"/"+String(date.getFullYear()).padStart(2,'0');
         this.deliveryDate = deliveryDate;
         this.paymentMethod = paymentMethod;
+        this.code = "";
         this.status = "In processing";
     }
 

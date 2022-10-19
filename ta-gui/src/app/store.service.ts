@@ -1,4 +1,5 @@
 import { Cart } from '../../../common/cart';
+import { Client } from '../../../common/client';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,5 +14,9 @@ export class StoreService {
 
     getCart(): Observable<Cart> {
         return this.http.get<Cart>(this.taURL + "/cart").pipe(retry(2));
+    }
+
+    getClient(clientId: number): Observable<Client> {
+        return this.http.get<Client>(this.taURL + `/client/${clientId}`,{headers: this.headers}).pipe(retry(2));
     }
 }

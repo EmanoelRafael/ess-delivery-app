@@ -1,11 +1,63 @@
 <html>
 
-<div class="confirmWindow">
+<div class="confirmWindow" *ngIf="!orderMade">
     <div class="cartConfirm">
-
+        <h1 class="confirmMsg">Deseja Confirmar o Pedido?</h1>
+        <table class="cartTable">
+            <tr class="labelLine">
+                <th class="productColumn">Produto</th>
+                <th class="prizeColumn">Preço</th>
+                <th class="quantityColumn">QTD</th>
+            </tr>
+    
+            <tr class="productLine" *ngFor="let product of cart.products">
+                <td class="productColumn" >{{product[0].name}}</td>
+                <td class="prizeColumn" >{{product[0].priceString}}</td>
+                <td class="quantityColumn" >{{product[1]}}</td>
+            </tr>
+            <tr class="shippingLine">
+                <td class="labelColumn" colspan="1">Frete</td>
+                <td class="valueColumn" colspan="2">{{cart.stringShipping}}</td>
+            </tr>
+            <tr class="totalLine">
+                <td class="labelColumn" colspan="1">Total</td>
+                <td class="valueColumn" colspan="2">{{cart.stringValue}}</td>
+            </tr>
+        </table>
+        <button class="backButton" routerLink="/cart">Voltar</button>
+        <button class="confirmButton" (click)="makeOrder()">Confirmar</button>
     </div>
     <div class="deliveryData">
-
+        <div class="deliveryDataClient">
+            <h1>Dados da Entrega</h1>
+            <ul>
+                <li><b> Dados do Comprador: </b><br>
+                    Nome: {{client.name}} <br>
+                    Email: {{client.email}}
+                </li><br>
+                <li><b> Endereço: </b><br>
+                CEP: {{client.address.cep}} <br>
+                Rua: {{client.address.street}} N: {{client.address.number}} <br>
+                {{client.address.city}}, {{client.address.state}}</li><br>
+                <li><b> Tempo Estimado de Entrega: </b><br>
+                    Agosto de Deus
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+<div class="confirmation" *ngIf="orderMade&&orderConfirmed">
+    <h1 class="informMsg">Pedido Confirmado!</h1>
+    <div class="orderCod">Codigo do Pedido: {{order.code}}</div>
+    <div class="emoji">😊</div>
+    <span class="thanks">Obrigado por usar a <i>Fast&Ship</i></span>
+</div>
+
+<div class="confirmation" *ngIf="orderMade&&(!orderConfirmed)">
+    <h1 class="informMsg">Pedido Negado!</h1>
+    <div class="emoji">😟</div>
+    <span class="sorry">Não foi possivel realizar o seu pedido.</span>
+</div>
+
 </html>
