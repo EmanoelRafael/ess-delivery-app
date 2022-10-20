@@ -16,4 +16,12 @@ export class Address {
         this.complement = "complement";
         this.refPoint = "refPoint";
     }
+
+    public getStringAddress(): string{
+        var str: string = "";
+
+        str += `Logradouro: ${this.street}, ${this.number}, ${this.cep}\n`
+        str += `${this.city}, ${this.state}`;
+        return "";
+    }
 }

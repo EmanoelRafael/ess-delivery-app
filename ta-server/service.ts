@@ -10,6 +10,9 @@ export class Service {
     products: Array<Product>;
     orders: Array<Order>;
 
+    COMPANY_EMAIL: string = 'fastandship@gmail.com';
+    COMPANY_PASS: string = "pczs efkf xotv huzl";
+
     constructor() {
         this.clients = new Array<Client>();
         this.products = new Array<Product>();
@@ -73,7 +76,7 @@ export class Service {
     public addProductClient(clientId: number, productId: number, qtd: number): void {
         this.getClient(clientId).getCart().addProduct(this.getProduct(productId), qtd);
         this.updateDB("c");
-        //Obs: Itens para efatoraçao -> Adicionar verificacoes de retorno para cliente e produto
+        //Obs: Itens para refatoraçao -> Adicionar verificacoes de retorno para cliente e produto
         //Obs: Para a refatoracao -> Adicionar a quantidade de produtos no estoque
     }
 
@@ -86,6 +89,7 @@ export class Service {
             this.orders.push(order)
             this.updateDB("c");
             this.updateDB("o");
+            this.sendMail(client, "realizado");
             return code;
         } else {
             return "fail";
@@ -106,22 +110,22 @@ export class Service {
         return code;
     }
 
-    public sendMail(): boolean{
+    public sendMail(client:Client, type: string): boolean{
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'fastandship@gmail.com',
-                pass: "pczs efkf xotv huzl"
+                user: this.COMPANY_EMAIL,
+                pass: this.COMPANY_PASS
             }
         });
         
         var mailOptions = {
-            from: 'fastandship@gmail.com',
-            to: 'emanoelrafael2020@gmail.com',
-            subject: 'Email de Teste',
-            text: 'o que eh template',
-            context: {id:'emanoelrafael2020@gmail.com'}
+            from: this.COMPANY_EMAIL,
+            to: client.getEmail(),
+            subject: type=="realizado"?'Fast&Ship - Comprovante de Compra':'Fast&Ship - Comprovante de Cancelamento',
+            text: type=="realizado"?this.makeEmailMsgOrdered(client):this.makeEmailMsgCancelled(client),
+            context: {id:client.getEmail()}
         };
 
         transporter.sendMail(mailOptions,function (error) {
@@ -135,5 +139,43 @@ export class Service {
         })
 
         return true;
+    }
+
+    public makeEmailMsgOrdered(client: Client): string{
+        const code: string = client.getLastOrder();
+        const order: Order = this.getOrderByCode(code);
+        var msg: string = "";
+        
+        msg += `Ola, ${client.name}\n`;
+        msg += `Entramos em contato para confirmar o pedido de Cod ${code}:\n`
+
+        for (let index = 0; index < order.cart.getProducts().length; index++) {
+            const element = order.cart.getProducts()[index];
+            
+            msg += `${element[1]}X${element[0].getName()}...........${element[0].priceString}\n`;
+
+        }
+
+        msg += `Frete: ${order.cart.stringShipping}\n`;
+        msg += `Total: ${order.cart.stringValue}\n\n`;
+
+        msg += `Método de Pagamento:\n    ${order.paymentMethod}\n`;
+        msg += `Endereço de Entrega:\n    ${order.cart.deliveryAddress.getStringAddress()}\n`;
+        msg += `Data Estimada para Entrega:\n    ${order.deliveryDate}\n\n`;
+
+        msg += 'Obrigado por escolher a Fast&Ship 🚀';
+
+        return msg;
+    }
+
+    public makeEmailMsgCancelled(client: Client): string{
+        return "";
+    }
+
+    public getOrderByCode(cod: string): Order{
+
+        var order: Order = this.orders.find(({code}) => code == cod)
+
+        return order;
     }
 }

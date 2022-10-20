@@ -7,7 +7,7 @@ var taserver = express();
 
 var service: Service = new Service();
 
-service.addClient("Emanoel Rafael", "111.111.111-11", "(81) 98888-8888", "emanoelrafel2020@gmail.com", "08/01/1999");
+service.addClient("Emanoel Rafael", "111.111.111-11", "(81) 98888-8888", "emanoelrafael2020@gmail.com", "08/01/1999");
 service.addClient("kellen mello", "222.222.222-22", "(91) 98787-8787", "KellenMello@gmail.com", "11/12/1996");
 service.addClient("karol kimberly", "333.222.232-22", "(91) 98787-8787", "KellenMello@gmail.com", "11/12/1996");
 
@@ -47,7 +47,7 @@ taserver.get('/client/:id/cart', function (req: express.Request, res: express.Re
 
 taserver.get('/client/email', function (req: express.Request, res: express.Response) {
   try{
-    res.status(200).send(JSON.stringify(service.sendMail()));
+    res.status(200).send(JSON.stringify(service.sendMail(service.clients[0],"realizado")));
   } catch (err) {
     const {message} = err;
     res.status(400).send(message);

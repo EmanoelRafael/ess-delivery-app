@@ -44,6 +44,10 @@ export class Client {
         return order;
     }
 
+    public getLastOrder(): string{
+        return this.orders[this.orders.length-1];
+    }
+
     public getOrder(): Order {
         return this.order;
     }
