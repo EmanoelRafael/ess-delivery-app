@@ -9,16 +9,18 @@ export class Cart {
     empty: boolean;
     shipping: number;
     deliveryAddress: Address;
+    deliveryDate: string;
 
 
-    constructor() {
+    constructor(deliveryAddress: Address) {
         this.products = Array<[Product,number]> ();
         this.value = 0;
         this.stringValue = "";
         this.empty = true;
         this.shipping = 0;
         this.stringShipping = this.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-        this.deliveryAddress = new Address();
+        this.deliveryAddress = deliveryAddress;
+        this.deliveryDate = "Agosto de Deus"
     }
 
     public getProducts(): Array<[Product,number]>{

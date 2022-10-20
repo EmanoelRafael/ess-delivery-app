@@ -28,4 +28,8 @@ export class StoreService {
     getClient(): Observable<Client> {
         return this.http.get<Client>(this.taURL + `/client/${this.clientId}`,{headers: this.headers}).pipe(retry(2));
     }
+
+    makeOrder():Observable<string> {
+        return this.http.post<string>(this.taURL +  `/client/${this.clientId}/orders`, {headers: this.headers})
+    }
 }

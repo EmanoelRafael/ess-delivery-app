@@ -1,6 +1,5 @@
 import { Product } from "../common/product";
 import { Address } from "../common/address";
-import { Card } from "../common/card";
 import { Cart } from "../common/cart";
 import { Order } from "../common/order";
 
@@ -11,9 +10,9 @@ export class Client {
     email: string;
     nasc: string;
     address: Address;
-    card: Card;
+    paymentMethod: string;
     cart: Cart;
-    orders: Array<Order>;
+    orders: Array<string>;
 
     constructor(name: string, cpf: string, tel: string, email:string, nasc:string ) {
         this.name = name;
@@ -22,9 +21,9 @@ export class Client {
         this.email = email;
         this.nasc = nasc;
         this.address = new Address();
-        this.card = new Card();
-        this.cart = new Cart();
-        this.orders = new Array<Order> ();
+        this.paymentMethod = "Credit Card";
+        this.cart = new Cart(this.address);
+        this.orders = new Array<string> ();
     }
 
     public getCart() : Cart {
@@ -35,7 +34,11 @@ export class Client {
         return this.email;
     }
     
-    public addOrder(paymentMethod: string, deliveryDate: string) : void {
-        this.orders.push(new Order(this.cart, paymentMethod, deliveryDate))
+    public addOrder(code: string) : Order {
+        const order: Order = new Order(this.cart, this.paymentMethod, code)
+        this.orders.push(code);
+        this.cart = new Cart(this.address);
+
+        return order;
     }
 }

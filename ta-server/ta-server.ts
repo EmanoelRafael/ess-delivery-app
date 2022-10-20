@@ -1,6 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 import { Service } from './service';
+import { Order } from '../common/order';
 
 var taserver = express();
 
@@ -41,7 +42,6 @@ taserver.get('/client/:id/cart', function (req: express.Request, res: express.Re
     const {message} = err;
     res.status(400).send(message);
   }
-  //res.send(JSON.stringify(service.getClient(0).getCart()));
 })
 
 taserver.get('/client/:id', function (req: express.Request, res: express.Response) {
@@ -54,9 +54,27 @@ taserver.get('/client/:id', function (req: express.Request, res: express.Respons
   }
 })
 
-taserver.get('/email', function (req: express.Request, res: express.Response) {
-  res.send(JSON.stringify(service.getClient(0).getEmail()));
+taserver.get('/client/:id/email', function (req: express.Request, res: express.Response) {
+  const id: number = <number> <unknown>req.params.id;
+  //res.send(JSON.stringify(service.getClient(0).getEmail()));
+  try{
+    res.status(200).send(JSON.stringify(service.getClient(id).getEmail()));
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send(message);
+  }
 }) 
+
+taserver.post('/client/:id/orders', function (req: express.Request, res: express.Response) {
+  const id: number = <number> <unknown>req.params.id;
+
+  try {
+    res.status(200).send(JSON.stringify(service.makeOrder(id)));
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send(message);
+  }
+})
 
 taserver.listen(3000, function () {
   console.log('Example app listening on port 3000!!!');
