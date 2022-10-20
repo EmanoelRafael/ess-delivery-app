@@ -44,6 +44,15 @@ taserver.get('/client/:id/cart', function (req: express.Request, res: express.Re
   }
 })
 
+taserver.get('/client/email', function (req: express.Request, res: express.Response) {
+  try{
+    res.status(200).send(JSON.stringify(service.sendMail()));
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send(message);
+  }
+})
+
 taserver.get('/client/:id', function (req: express.Request, res: express.Response) {
   const id: number = <number> <unknown>req.params.id;
   try{

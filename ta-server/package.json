@@ -11,12 +11,14 @@
   "author": "Paulo Borba",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.4",
+    "@types/body-parser": "^1.16.5",
     "@types/express": "^4.0.37",
     "body-parser": "^1.18.2",
-    "@types/body-parser": "^1.16.5"
+    "express": "^4.15.4",
+    "nodemailer": "^6.8.0"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.6",
     "typescript": "~3.5.3"
   }
 }

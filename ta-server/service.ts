@@ -2,6 +2,8 @@ import { Client } from "../common/client";
 import { Order } from "../common/order";
 import { Product } from "../common/product";
 
+import * as nodemailer from "nodemailer";
+
 export class Service {
     
     clients: Array<Client>;
@@ -78,7 +80,7 @@ export class Service {
     public makeOrder(clientId: number): string{
         const client: Client = this.getClient(clientId);
 
-        if (client.paymentMethod != "") {
+        if (client.paymentMethod != "" && client.email != "") {
             const code = this.generateOrderCode(client);
             const order = client.addOrder(code);
             this.orders.push(order)
@@ -101,5 +103,36 @@ export class Service {
         }
         //adicionar funcionalidade: Verificar se o codigo do pedido ja nao existe
         return code;
+    }
+
+    public sendMail(): boolean{
+
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'fastandship@gmail.com',
+                pass: "pczs efkf xotv huzl"
+            }
+        });
+        
+        var mailOptions = {
+            from: 'fastandship@gmail.com',
+            to: 'emanoelrafael2020@gmail.com',
+            subject: 'Email de Teste',
+            text: 'o que eh template',
+            context: {id:'emanoelrafael2020@gmail.com'}
+        };
+
+        transporter.sendMail(mailOptions,function (error) {
+            if (error) {
+                console.log("Deu Ruim", error);
+                false;
+            } else {
+                console.log("Deu Bom");
+                true;
+            }
+        })
+
+        return true;
     }
 }
