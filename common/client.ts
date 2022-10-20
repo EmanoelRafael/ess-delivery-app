@@ -13,8 +13,9 @@ export class Client {
     paymentMethod: string;
     cart: Cart;
     orders: Array<string>;
+    order: Order;
 
-    constructor(name: string, cpf: string, tel: string, email:string, nasc:string ) {
+    constructor(name: string, cpf: string, tel: string, email: string, nasc: string) {
         this.name = name;
         this.cpf = cpf;
         this.tel = tel;
@@ -23,22 +24,27 @@ export class Client {
         this.address = new Address();
         this.paymentMethod = "Credit Card";
         this.cart = new Cart(this.address);
-        this.orders = new Array<string> ();
+        this.orders = new Array<string>();
+        this.order = new Order(this.cart, "", "");
     }
 
-    public getCart() : Cart {
+    public getCart(): Cart {
         return this.cart;
     }
 
-    public getEmail() : string {
+    public getEmail(): string {
         return this.email;
     }
-    
-    public addOrder(code: string) : Order {
+
+    public addOrder(code: string): Order {
         const order: Order = new Order(this.cart, this.paymentMethod, code)
         this.orders.push(code);
         this.cart = new Cart(this.address);
 
         return order;
+    }
+
+    public getOrder(): Order {
+        return this.order;
     }
 }
