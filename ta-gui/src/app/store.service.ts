@@ -9,14 +9,23 @@ import { retry } from 'rxjs/operators';
 export class StoreService {
     private headers = new HttpHeaders({'Content-Type': 'application/json'});
     private taURL = 'http://localhost:3000';
+    private clientId:number = 0;
 
     constructor(private http: HttpClient) {}
 
-    getCart(): Observable<Cart> {
-        return this.http.get<Cart>(this.taURL + "/cart").pipe(retry(2));
+    public setClientId(id:number){
+        this.clientId = id;
     }
 
-    getClient(clientId: number): Observable<Client> {
-        return this.http.get<Client>(this.taURL + `/client/${clientId}`,{headers: this.headers}).pipe(retry(2));
+    public getClientId(): number{
+        return this.clientId;
+    }
+
+    getCart(): Observable<Cart> {
+        return this.http.get<Cart>(this.taURL + `/client/${this.clientId}/cart`).pipe(retry(2));
+    }
+
+    getClient(): Observable<Client> {
+        return this.http.get<Client>(this.taURL + `/client/${this.clientId}`,{headers: this.headers}).pipe(retry(2));
     }
 }

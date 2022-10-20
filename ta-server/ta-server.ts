@@ -33,8 +33,15 @@ taserver.get('/', function (req: express.Request, res: express.Response) {
   res.send(JSON.stringify("Fast&Ship"));
 })
 
-taserver.get('/cart', function (req: express.Request, res: express.Response) {
-  res.send(JSON.stringify(service.getClient(0).getCart()));
+taserver.get('/client/:id/cart', function (req: express.Request, res: express.Response) {
+  const id: number = <number> <unknown>req.params.id;
+  try{
+    res.status(200).send(JSON.stringify(service.getClient(id).getCart()));
+  } catch (err) {
+    const {message} = err;
+    res.status(400).send(message);
+  }
+  //res.send(JSON.stringify(service.getClient(0).getCart()));
 })
 
 taserver.get('/client/:id', function (req: express.Request, res: express.Response) {

@@ -30,7 +30,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storeService.getClient(0).subscribe(
+    this.storeService.getClient().subscribe(
       res=> {
         this.client = res;
         this.cart = this.client.cart;
