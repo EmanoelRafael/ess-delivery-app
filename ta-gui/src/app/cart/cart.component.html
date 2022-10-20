@@ -1,5 +1,5 @@
 <html>
-<div class="cart">
+<div *ngIf="!cart.empty" class="cart">
     <table class="cartTable">
         <tr class="labelLine">
             <th class="imageColumn"></th>
@@ -26,5 +26,9 @@
    
     <button class="buyButton" routerLink="/cart/confirm">Finalizar Compra</button>
     <router-outlet></router-outlet>
+</div>
+<div *ngIf="cart.empty" class="emptyCart">
+    <h1>O Seu Carrinho esta vazio!</h1>
+    <div class="emoji">😟</div>
 </div>
 </html>

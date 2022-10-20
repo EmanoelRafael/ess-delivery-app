@@ -92,7 +92,13 @@ export class Service {
     }
 
     public generateOrderCode(client: Client): string{
-        const code: string = "" + client.name[0] + client.cart.getProducts()[0][0].name[0] + this.orders.length + "FS";
+        var code: string = "";
+        if (client.cart.getProducts().length>0) {
+            code = "" + client.name[0] + client.cart.getProducts()[0][0].name[0] + this.orders.length + "FS";
+        
+        }else{
+            code = "fail"
+        }
         //adicionar funcionalidade: Verificar se o codigo do pedido ja nao existe
         return code;
     }

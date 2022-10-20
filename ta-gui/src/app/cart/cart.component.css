@@ -98,3 +98,18 @@
 
     background: none;
 }
+
+.emptyCart{
+    position: absolute;
+    border: 1px solid black;
+    width: 300px;
+    height: 250px;
+    text-align: center;
+    top: 200px;
+    left: 600px;
+    background-color: rgba(11, 223, 227, 1);
+}
+
+.emoji{
+    font-size: 100px;
+}
