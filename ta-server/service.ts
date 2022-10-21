@@ -89,7 +89,7 @@ export class Service {
             this.orders.push(order)
             this.updateDB("c");
             this.updateDB("o");
-            this.sendMail(client, "realizado");
+            this.sendMail(client, "placed", code);
             return code;
         } else {
             return "fail";
@@ -110,7 +110,16 @@ export class Service {
         return code;
     }
 
-    public sendMail(client:Client, type: string): boolean{
+    public cancelOrder(clientId: number,orderCode: string): string{
+
+        this.orders.find(({code}) => code == orderCode).setStatus("canceled");
+        this.sendMail(this.getClient(clientId),"cancelado", orderCode);
+        
+        return "canceled";
+        
+    }
+
+    public sendMail(client:Client, type: string, orderCode: string): boolean{
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -123,8 +132,8 @@ export class Service {
         var mailOptions = {
             from: this.COMPANY_EMAIL,
             to: client.getEmail(),
-            subject: type=="realizado"?'Fast&Ship - Comprovante de Compra':'Fast&Ship - Comprovante de Cancelamento',
-            text: type=="realizado"?this.makeEmailMsgOrdered(client):this.makeEmailMsgCancelled(client),
+            subject: type=="placed"?'Fast&Ship - Comprovante de Compra':'Fast&Ship - Comprovante de Cancelamento',
+            text: type=="placed"?this.makeEmailMsgOrdered(client, orderCode):this.makeEmailMsgCancelled(client,orderCode),
             context: {id:client.getEmail()}
         };
 
@@ -141,13 +150,12 @@ export class Service {
         return true;
     }
 
-    public makeEmailMsgOrdered(client: Client): string{
-        const code: string = client.getLastOrder();
-        const order: Order = this.getOrderByCode(code);
+    public makeEmailMsgOrdered(client: Client, orderCode:string): string{
+        const order: Order = this.getOrderByCode(orderCode);
         var msg: string = "";
         
         msg += `Ola, ${client.name}\n`;
-        msg += `Entramos em contato para confirmar o pedido de Cod ${code}:\n`
+        msg += `Entramos em contato para confirmar o pedido de Cod ${orderCode}:\n`
 
         for (let index = 0; index < order.cart.getProducts().length; index++) {
             const element = order.cart.getProducts()[index];
@@ -168,8 +176,25 @@ export class Service {
         return msg;
     }
 
-    public makeEmailMsgCancelled(client: Client): string{
-        return "";
+    public makeEmailMsgCancelled(client: Client, orderCode: string): string{
+        var msg: string = "";
+        const order: Order = this.getOrderByCode(orderCode);
+
+        msg += `Ola, ${client.name}\n\n`;
+
+        msg += `Entramos em contato para confirmar o cancelamento do(s) produto(s):\n\n`;
+
+        for (let index = 0; index < order.cart.getProducts().length; index++) {
+            const element = order.cart.getProducts()[index];
+            
+            msg += `${element[1]}X${element[0].getName()}......${element[0].priceString}\n`;
+            
+        }
+
+        msg += `\nMetodo de Pagamento utilizado: ${order.paymentMethod}\n
+        Será enviado um email com as informacoes de devolucao.\n`;
+        
+        return msg;
     }
 
     public getOrderByCode(cod: string): Order{
