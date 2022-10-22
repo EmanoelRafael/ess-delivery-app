@@ -12,7 +12,7 @@ export class CancelamentoComponent implements OnInit {
   constructor(private router: ActivatedRoute, private storeService: StoreService) { }
 
   @Input() code: string = "";
-  @Input() flag: boolean = false;
+  flag: boolean = false;
   ret: string = "";
 
   printCode(): void{
@@ -22,6 +22,7 @@ export class CancelamentoComponent implements OnInit {
   cancelOrder(): void{
     this.storeService.cancelOrder(this.code).subscribe((res) => {
       this.ret = res;
+      this.flag = !this.flag;
       console.log(this.ret);
     })
   }

@@ -1,3 +1,12 @@
-<p>cancelamento works!</p>
-<button class="confirmCancelButton" (click)="cancelOrder()" routerLink="/historico"> CONFIRMAR CANCELAMENTO DE PEDIDO</button>
-<button class="backHistoryButton" routerLink="/historico">Voltar Para meus pedidos</button>
+<html>
+    <div *ngIf="!flag" class="confirmCancel">
+        <h1 class="cancelMsg">Tem certeza que deseja cancelar o Pedido?</h1>
+        <button class="confirmButton" (click)="cancelOrder()">CONFIRMAR</button>
+        <button class="backButton" routerLink="/historico">VOLTAR</button>
+    </div>
+
+    <div *ngIf="flag" class="cancelConfirmed">
+        <h1 class="cancelConfirmedMsg">Pedido Cancelado!</h1>
+        <button class="backCanceledButton" routerLink="/historico">Voltar</button>
+    </div>
+</html>
