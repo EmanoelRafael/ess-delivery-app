@@ -111,10 +111,9 @@ export class Service {
     }
 
     public cancelOrder(clientId: number,orderCode: string): string{
-
         this.orders.find(({code}) => code == orderCode).setStatus("canceled");
         this.sendMail(this.getClient(clientId),"cancelado", orderCode);
-        
+        this.updateDB("o");
         return "canceled";
         
     }

@@ -39,6 +39,6 @@ export class StoreService {
     }
 
     cancelOrder(code: string): Observable<string> {
-        return this.http.delete<string>(this.taURL + `/client/${this.clientId}/orders/${code}`,{ headers: this.headers }).pipe(retry(2));
+        return this.http.post<string>(this.taURL + `/client/${this.clientId}/orders/${code}`,{ headers: this.headers }).pipe(retry(2));
     }
 }
