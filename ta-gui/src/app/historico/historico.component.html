@@ -25,9 +25,10 @@
         <p class="productStatus">Status: {{order.status}}</p>
         <button type="button" class="comprarNovamente" onclick="alert('Adicionado ao carrinho')">Comprar
             novamente</button>
-        <button type="button" class="acompanharPedido" onclick="alert('Pedido em andamento')">Acompanhar pedido</button>
-        <button type="button" class="cancelarPedido" onclick="alert('Pedido cancelado')">Cancelar pedido</button>
+        <button type="button" class="acompanharPedido" routerLink="/acompedidos">Acompanhar pedido</button>
+        <button type="button" class="cancelarPedido" [routerLink]="['/historico/cancelamento',orderCode]">Cancelar pedido</button>
     </div>
+    <router-outlet></router-outlet>
 </body>
 
 </html>

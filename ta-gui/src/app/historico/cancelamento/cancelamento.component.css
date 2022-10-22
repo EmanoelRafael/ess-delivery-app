@@ -1,0 +1,17 @@
+.confirmCancelButton{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 200px;
+    left: 500px;
+    background-color: orange;
+}
+
+.backHistoryButton{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 200px;
+    left: 50px;
+    background-color: orange;
+}
