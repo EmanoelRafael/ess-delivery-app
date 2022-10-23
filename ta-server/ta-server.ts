@@ -90,7 +90,6 @@ taserver.post('/client/:id/orders', function (req: express.Request, res: express
 taserver.post('/client/:id/orders/:code',function (req: express.Request, res: express.Response) {
   const id: number = <number><unknown>req.params.id;
   const code: string = <string>req.params.code;
-  console.log("Cheguei", id, code)
   try {
     res.status(200).send(JSON.stringify(service.cancelOrder(id, code)));
   } catch (err) {

@@ -12,7 +12,8 @@ export class CancelamentoComponent implements OnInit {
   constructor(private router: ActivatedRoute, private storeService: StoreService) { }
 
   @Input() code: string = "";
-  flag: boolean = false;
+  cancelRequested: boolean = false;
+  orderCanceled: boolean = false;
   ret: string = "";
 
   printCode(): void{
@@ -20,9 +21,15 @@ export class CancelamentoComponent implements OnInit {
   }
 
   cancelOrder(): void{
+    this.cancelRequested = !this.cancelRequested;
     this.storeService.cancelOrder(this.code).subscribe((res) => {
+      
       this.ret = res;
-      this.flag = !this.flag;
+      if (this.ret == "canceled") {
+        this.orderCanceled = true;
+      } else {
+        this.orderCanceled = false;
+      }
       console.log(this.ret);
     })
   }

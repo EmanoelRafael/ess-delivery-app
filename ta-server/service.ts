@@ -83,7 +83,11 @@ export class Service {
     public makeOrder(clientId: number): string {
         const client: Client = this.getClient(clientId);
 
-        if (client.paymentMethod != "" && client.email != "") {
+        var validEmail: boolean = this.verifyEmail(client.email);
+        var validPayment: boolean = true; 
+        //Verificar o Email
+
+        if (validPayment && validEmail) {
             const code = this.generateOrderCode(client);
             const order = client.addOrder(code);
             this.orders.push(order)
@@ -111,11 +115,31 @@ export class Service {
     }
 
     public cancelOrder(clientId: number,orderCode: string): string{
-        this.orders.find(({code}) => code == orderCode).setStatus("canceled");
-        this.sendMail(this.getClient(clientId),"cancelado", orderCode);
-        this.updateDB("o");
-        return "canceled";
+        const client: Client = this.getClient(clientId);
+        var validEmail: boolean = this.verifyEmail(client.email);
+        //Verificar o Email
+
+        if(validEmail) {
+            this.orders.find(({code}) => code == orderCode).setStatus("canceled");
+            this.sendMail(this.getClient(clientId),"cancelado", orderCode);
+            this.updateDB("o");
+            return "canceled";
+            
+        } else {
+            return "fail";
+        }
         
+    }
+
+    public verifyEmail(email: string): boolean{
+        //Funcao para ser implementada
+        if(email == "emanoelrafael2020@gmail.com"){
+            console.log("valid Email")
+            return true;
+        }else{
+            console.log("not Valid Email")
+            return false;
+        }
     }
 
     public sendMail(client:Client, type: string, orderCode: string): boolean{
