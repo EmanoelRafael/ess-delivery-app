@@ -5,95 +5,62 @@ body {
     background-color: rgba(224, 255, 255, 1);
 }
 
-.navBar {
+.categories{
     position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     padding: 10px;
-    box-sizing: border-box;
-    height: 100px;
-    width: 100vw;
-    background-color: rgba(11, 223, 227, 1);
-}
-
-.searchBox {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color: white;
-
-    box-sizing: border-box;
-    padding-left: 10px;
+    top: 150px;
+    left: 70px;
+    height: 350px;
+    width: 200px;
+    border: 1px solid black;
     border-radius: 30px;
-    height: 70px;
-    width: 500px;
-}
-
-.searchInput {
-    background: none;
-    border: 0;
-
-    font-size: 20px;
-    outline: 0;
-    width: 400px;
-}
-
-.searchButton {
-    background: rgba(224, 255, 255, 1);
-    border: 0;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    height: 70px;
-    width: 70px;
-    cursor: pointer;
+    text-align: center;
+    background-color: rgba(119, 221, 238, 1);
 
 }
 
-.magGlass {
-    height: 45px;
-    width: 45px;
+.categoryText{
+    font-size: 25px;
 }
 
-.logoButton {
-    background: rgba(224, 255, 255, 1);
-    border: 0;
-    padding-top: 5px;
-    box-sizing: border-box;
-
-    border-radius: 30px;
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    cursor: pointer;
+.socialMediaText{
+    font-size: 25px;
 }
 
-.logoFig {
-    width: 170px;
-    height: 60px;
+.category{
+    font-size: 15px;
+    padding-top: 20px;
 }
 
-.myOrderButton {
-    background: rgba(224, 255, 255, 1);
-    border: 0;
-    border-radius: 25px;
-    font-size: 30px;
+.socialMedia{
+    position: absolute;
     padding: 10px;
-    cursor: pointer;
-}
-
-.cartButton {
-    background-color: rgba(224, 255, 255, 1);
-    border: 0;
+    top: 570;
+    left: 70px;
+    height: 120px;
+    width: 200px;
+    border: 1px solid black;
     border-radius: 30px;
-    width: 80px;
-    height: 70px;
-    cursor: pointer;
+    text-align: center;
+    background-color: rgba(119, 221, 238, 1);
 }
 
-.cartFig {
+.instaIcon{
     width: 50px;
     height: 50px;
+}
+
+.faceIcon{
+    width: 50px;
+    height: 50px;
+}
+
+.twitterIcon{
+    width: 50px;
+    height: 50px;
+}
+
+.productList{
+    position: absolute;
+    border: 1px solid black;
 }
