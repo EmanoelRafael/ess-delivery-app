@@ -45,15 +45,6 @@ taserver.get('/client/:id/cart', function (req: express.Request, res: express.Re
   }
 })
 
-taserver.get('/client/email', function (req: express.Request, res: express.Response) {
-  try{
-    res.status(200).send(JSON.stringify(service.sendMail(service.clients[0],"realizado")));
-  } catch (err) {
-    const {message} = err;
-    res.status(400).send(message);
-  }
-})
-
 taserver.get('/client/:id', function (req: express.Request, res: express.Response) {
   const id: number = <number><unknown>req.params.id;
   try {
@@ -90,6 +81,17 @@ taserver.post('/client/:id/orders', function (req: express.Request, res: express
 
   try {
     res.status(200).send(JSON.stringify(service.makeOrder(id)));
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send(message);
+  }
+})
+
+taserver.post('/client/:id/orders/:code',function (req: express.Request, res: express.Response) {
+  const id: number = <number><unknown>req.params.id;
+  const code: string = <string>req.params.code;
+  try {
+    res.status(200).send(JSON.stringify(service.cancelOrder(id, code)));
   } catch (err) {
     const { message } = err;
     res.status(400).send(message);

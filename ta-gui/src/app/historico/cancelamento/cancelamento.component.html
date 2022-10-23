@@ -1,0 +1,17 @@
+<html>
+    <div *ngIf="!cancelRequested" class="confirmCancel">
+        <h1 class="cancelMsg">Tem certeza que deseja cancelar o Pedido?</h1>
+        <button class="confirmButton" (click)="cancelOrder()">CONFIRMAR</button>
+        <button class="backButton" routerLink="/historico">VOLTAR</button>
+    </div>
+
+    <div *ngIf="cancelRequested&& orderCanceled" class="cancelConfirmed">
+        <h1 class="cancelConfirmedMsg">Pedido Cancelado!</h1>
+        <button class="backCanceledButton" routerLink="/historico">Voltar</button>
+    </div>
+
+    <div *ngIf="cancelRequested&& !orderCanceled" class="cancelNotConfirmed">
+        <h1 class="cancelNotConfirmedMsg">Não foi possivel cancelar o pedido!</h1>
+        <button class="backNotCanceledButton" routerLink="/historico">Voltar</button>
+    </div>
+</html>

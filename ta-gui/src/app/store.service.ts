@@ -35,6 +35,10 @@ export class StoreService {
     }
 
     getOrder(): Observable<Order> {
-        return this.http.get<Order>(this.taURL + `/client/${this.clientId}/orders`).pipe(retry(2));
+        return this.http.get<Order>(this.taURL + `/client/${this.clientId}/orders`, { headers: this.headers }).pipe(retry(2));
+    }
+
+    cancelOrder(code: string): Observable<string> {
+        return this.http.post<string>(this.taURL + `/client/${this.clientId}/orders/${code}`,{ headers: this.headers }).pipe(retry(2));
     }
 }

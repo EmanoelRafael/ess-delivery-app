@@ -27,16 +27,13 @@ export class ConfirmComponent implements OnInit {
       res=>{
         this.orderCode = res;
         if (this.orderCode != "fail") {
-          this.orderConfirmed = true
+          this.orderConfirmed = true;
+        }else{
+          this.orderConfirmed = false;
         }
       } 
     )
     
-    /**this.orderMade = !this.orderMade;
-    console.log(!this.orderMade);
-
-    this.orderConfirmed = false;
-    return this.orderMade;*/
   }
 
   ngOnInit(): void {

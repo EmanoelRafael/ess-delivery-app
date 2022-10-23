@@ -17,6 +17,7 @@ export class HistoricoComponent implements OnInit {
     constructor(private storeService: StoreService) { };
     cart: Cart = new Cart(new Address);
     order: Order = new Order(this.cart, "", "");
+    orderCode: string = "EE0FS";
     ngOnInit(): void {
         this.storeService.getOrder().subscribe(res => {
             this.order = res

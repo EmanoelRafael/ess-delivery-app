@@ -25,4 +25,8 @@ export class Order {
     public setCode(code: string): void{
         this.code = code;
     }
+
+    public setStatus(status: string): void{
+        this.status = status
+    }
 }
