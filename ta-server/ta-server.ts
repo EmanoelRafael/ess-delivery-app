@@ -76,6 +76,16 @@ taserver.get('/client/:id/orders', function (req: express.Request, res: express.
   }
 })
 
+taserver.get('/products', function (req: express.Request, res: express.Response) {
+  
+  try {
+    res.status(200).send(JSON.stringify(service.getProducts()));
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send(message);
+  }
+})
+
 taserver.post('/client/:id/orders', function (req: express.Request, res: express.Response) {
   const id: number = <number><unknown>req.params.id;
 

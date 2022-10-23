@@ -73,6 +73,10 @@ export class Service {
 
     }
 
+    public getProducts(): Array<Product> {
+        return this.products;
+    }
+
     public addProductClient(clientId: number, productId: number, qtd: number): void {
         this.getClient(clientId).getCart().addProduct(this.getProduct(productId), qtd);
         this.updateDB("c");
