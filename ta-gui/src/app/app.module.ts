@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { StoreService } from './store.service';
 import { CartModule } from './cart/cart.module';
 import { HistoricoModule } from "./historico/historico.module";
+import { HomeModule } from './home/home.module';
+import { ComponentsModule } from './components/header/components.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,10 @@ import { HistoricoModule } from "./historico/historico.module";
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    HomeModule,
     CartModule,
-    HistoricoModule
+    HistoricoModule,
+    ComponentsModule
   ],
   providers: [StoreService],
   bootstrap: [AppComponent]
