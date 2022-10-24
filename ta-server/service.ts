@@ -3,36 +3,32 @@ import { Order } from "../common/order";
 import { Product } from "../common/product";
 
 import * as nodemailer from "nodemailer";
+import { Address } from "../common/address";
+import { Cart } from "../common/cart";
+import { DBService } from "./db/DBService";
 
 export class Service {
 
     clients: Array<Client>;
     products: Array<Product>;
     orders: Array<Order>;
+    dataBase: DBService;
 
     COMPANY_EMAIL: string = 'fastandship@gmail.com';
     COMPANY_PASS: string = "pczs efkf xotv huzl";
 
     constructor() {
-        this.clients = new Array<Client>();
-        this.products = new Array<Product>();
-        this.orders = new Array<Order>();
+        this.dataBase = new DBService();
+        this.clients = this.dataBase.getClients()
+        this.products = this.dataBase.getProducts()
+        this.orders = this.dataBase.getOrders()
 
-        const fs = require('fs');
-
-        var clientsData = fs.readFileSync("./db/clients.json");
-        this.clients = <Array<Client>>JSON.parse(clientsData);
-
-        var productsData = fs.readFileSync("./db/products.json");
-        this.products = <Array<Product>>JSON.parse(productsData);
-
-        var ordersData = fs.readFileSync("./db/orders.json");
-        this.orders = <Array<Order>>JSON.parse(ordersData);
     }
 
     public addClient(nome: string, cpf: string, tel: string, email: string, nasc: string): number {
         var id = this.clients.push(new Client(nome, cpf, tel, email, nasc));
-        this.updateDB("c");
+        this.dataBase.setClients(this.clients);
+        this.dataBase.updateDB("c");
 
         return id - 1;
     }
@@ -45,21 +41,11 @@ export class Service {
         }
     }
 
-    public updateDB(flag: string) {
-        const fs = require('fs');
-        if (flag == "c") {
-            fs.writeFileSync("./db/clients.json", JSON.stringify(this.clients));
-        } else if (flag == "p") {
-            fs.writeFileSync("./db/products.json", JSON.stringify(this.products));
-        }
-        else if (flag == "o") {
-            fs.writeFileSync("./db/orders.json", JSON.stringify(this.orders));
-        }
-    }
 
     public addProduct(name: string, price: number, description: string, pictureName: string): number {
         var id = this.products.push(new Product(name, price, description, pictureName));
-        this.updateDB("p");
+        this.dataBase.setProducts(this.products);
+        this.dataBase.updateDB("p");
 
         return id - 1;
     }
@@ -79,7 +65,8 @@ export class Service {
 
     public addProductClient(clientId: number, productId: number, qtd: number): void {
         this.getClient(clientId).getCart().addProduct(this.getProduct(productId), qtd);
-        this.updateDB("c");
+        this.dataBase.setClients(this.clients)
+        this.dataBase.updateDB("c");
         //Obs: Itens para refatoraçao -> Adicionar verificacoes de retorno para cliente e produto
         //Obs: Para a refatoracao -> Adicionar a quantidade de produtos no estoque
     }
@@ -94,9 +81,13 @@ export class Service {
         if (validPayment && validEmail) {
             const code = this.generateOrderCode(client);
             const order = client.addOrder(code);
-            this.orders.push(order);
-            this.updateDB("c");
-            this.updateDB("o");
+
+            this.orders.push(order)
+            this.dataBase.setClients(this.clients);
+            this.dataBase.setOrders(this.orders);
+            this.dataBase.updateDB("c");
+            this.dataBase.updateDB("o");
+
             this.sendMail(client, "placed", code);
             return code;
         } else {
@@ -123,10 +114,13 @@ export class Service {
         var validEmail: boolean = this.verifyEmail(client.email);
         //Verificar o Email
 
-        if (validEmail) {
-            this.orders.find(({ code }) => code == orderCode).setStatus("canceled");
-            this.sendMail(this.getClient(clientId), "cancelado", orderCode);
-            this.updateDB("o");
+
+        if(validEmail) {
+            this.orders.find(({code}) => code == orderCode).setStatus("canceled");
+            this.sendMail(this.getClient(clientId),"cancelado", orderCode);
+            this.dataBase.setOrders(this.orders);
+            this.dataBase.updateDB("o");
+
             return "canceled";
 
         } else {
@@ -137,11 +131,10 @@ export class Service {
 
     public verifyEmail(email: string): boolean {
         //Funcao para ser implementada
-        if (email == "emanoelrafael2020@gmail.com") {
-            console.log("valid Email")
+
+        if(email == "emanoelrafael2020@gmail.com"){
             return true;
-        } else {
-            console.log("not Valid Email")
+        }else{
             return false;
         }
     }
@@ -166,10 +159,8 @@ export class Service {
 
         transporter.sendMail(mailOptions, function (error) {
             if (error) {
-                console.log("Deu Ruim", error);
                 false;
             } else {
-                console.log("Deu Bom");
                 true;
             }
         })
