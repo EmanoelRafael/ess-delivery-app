@@ -5,28 +5,19 @@
     <title>Fast&Ship</title>
 </head>
 <app-header></app-header>
+
 <body>
-    <!--
-    <div class="titulo">
-        <a href="./app.component.html">
-            <img class=" logo" src="/assets/Logo.jpg">
-        </a>
-        <button type="button" class="carrinho" onclick="alert('Hello world!')">Carrinho</button>
-        <h2 class="historico">Histórico de pedidos</h2>
-    </div>
-    -->
     <div class="produtos" *ngFor="let product of order.cart.products">
-        {{product[0].name}}
-        <img class="imagem" src="/assets/HMA02.jpg">
-        <h4 class="productName">{{product[0].name}}</h4>
-        <!--Nome do produto-->
+        <img class="imagem" src="../assets/{{product[0].pictureName}}">
+        <h4 class=" productName">{{product[0].name}}</h4>
         <p class="productPrice">{{product[0].priceString}}</p>
         <p class="productShip">Pedido feito em: {{order.orderedDate}}</p>
         <p class="productStatus">Status: {{order.status}}</p>
         <button type="button" class="comprarNovamente" onclick="alert('Adicionado ao carrinho')">Comprar
             novamente</button>
         <button type="button" class="acompanharPedido" routerLink="/acompedidos">Acompanhar pedido</button>
-        <button type="button" class="cancelarPedido" [routerLink]="['/historico/cancelamento',orderCode]">Cancelar pedido</button>
+        <button type="button" class="cancelarPedido" [routerLink]="['/historico/cancelamento',orderCode]">Cancelar
+            pedido</button>
     </div>
     <router-outlet></router-outlet>
 </body>
