@@ -4,7 +4,8 @@ body {
     width: 100vw;
     background-color: rgba(224, 255, 255, 1);
 }
-.cart{
+
+.cart {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -17,7 +18,7 @@ body {
     margin-top: 100px;
 }
 
-.cartTable{
+.cartTable {
     position: absolute;
     border-style: groove;
     border: 1;
@@ -26,7 +27,7 @@ body {
     top: 100px;
 }
 
-.imageColumn{
+.imageColumn {
     width: 150px;
     background: none;
     border-style: groove;
@@ -35,12 +36,12 @@ body {
     padding: 10px;
 }
 
-.productImage{
+.productImage {
     width: 100px;
     height: 90px;
 }
 
-.productColumn{
+.productColumn {
     width: 300px;
     background: none;
     font-size: 20px;
@@ -50,7 +51,7 @@ body {
     padding: 10px;
 }
 
-.prizeColumn{
+.prizeColumn {
     width: 130px;
     background: none;
     font-size: 20px;
@@ -60,7 +61,7 @@ body {
     padding: 10px;
 }
 
-.quantityColumn{
+.quantityColumn {
     width: 50px;
     background: none;
     font-size: 20px;
@@ -70,8 +71,8 @@ body {
     border-color: black;
 }
 
-.labelColumn{
-    
+.labelColumn {
+
     height: 20px;
     font-size: 20px;
     border-style: groove;
@@ -79,21 +80,21 @@ body {
     border-color: black;
 }
 
-.valueColumn{
+.valueColumn {
     border-style: groove;
     border: 1;
     border-color: black;
 }
 
-.labelLine{
+.labelLine {
     height: 40px;
 }
 
-.productLine{
+.productLine {
     height: 90px;
 }
 
-.buyButton{
+.buyButton {
     position: absolute;
     bottom: 50px;
     border-radius: 40px;
@@ -106,7 +107,7 @@ body {
     cursor: pointer;
 }
 
-.buyButton:hover{
+.buyButton:hover {
     position: absolute;
     bottom: 50px;
     border-radius: 40px;
@@ -120,7 +121,7 @@ body {
     cursor: pointer;
 }
 
-.emptyCart{
+.emptyCart {
     position: absolute;
     border: 1px solid black;
     width: 300px;
@@ -131,6 +132,6 @@ body {
     background-color: rgba(11, 223, 227, 1);
 }
 
-.emoji{
+.emoji {
     font-size: 100px;
 }

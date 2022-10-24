@@ -11,6 +11,7 @@ service.addClient("Emanoel Rafael", "111.111.111-11", "(81) 98888-8888", "emanoe
 service.addClient("kellen mello", "222.222.222-22", "(91) 98787-8787", "KellenMello@gmail.com", "11/12/1996");
 service.addClient("karol kimberly", "333.222.232-22", "(91) 98787-8787", "KellenMello@gmail.com", "11/12/1996");
 
+
 service.addProduct("Echo Dot 4Gen", 379.05, "Smart Speaker com Alexa - Cor Preta", "Echo Dot.jpg");
 service.addProduct("Projetor Blulory", 659.00, "Com 4K 1200 Lux e UHD Nativo 1280*720p, LCD Video Beamer Compatível com Android OS/Tablet/PC", "Projetor Blulory.jpg");
 service.addProduct("Galaxy Tab S7 FE", 3719.00, 'TABLET SAMSUNG T735 com 4G e memoria RAM, 12.4", 128GB de memoria interna. Cor: PRETO MAN', "Galaxy Tab.jpg");
