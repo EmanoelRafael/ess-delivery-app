@@ -40,12 +40,12 @@ export class Client {
         const order: Order = new Order(this.cart, this.paymentMethod, code)
         this.orders.push(code);
         this.cart = new Cart(this.address);
-
+        this.order.empty = false;
         return order;
     }
 
-    public getLastOrder(): string{
-        return this.orders[this.orders.length-1];
+    public getLastOrder(): string {
+        return this.orders[this.orders.length - 1];
     }
 
     public getOrder(): Order {
