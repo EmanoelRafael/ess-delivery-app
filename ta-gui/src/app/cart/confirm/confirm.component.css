@@ -101,6 +101,21 @@
     border-radius: 40px;
 
     background-color: rgba(202, 246, 253, 1);
+    cursor: pointer;
+}
+
+.backButton:hover{
+    position: absolute;
+    width: 157px;
+    height: 36px;
+    left: 200px;
+    top: 370px;
+
+    border-radius: 40px;
+
+    border: 3px groove rgba(224, 255, 255, 1);
+    background-color: rgba(140, 251, 251, 1);
+    cursor: pointer;
 }
 
 .confirmButton{
@@ -113,6 +128,21 @@
     border-radius: 40px;
 
     background-color: rgba(202, 246, 253, 1);
+    cursor: pointer;
+}
+
+.confirmButton:hover{
+    position: absolute;
+    width: 157px;
+    height: 36px;
+    left: 400px;
+    top: 370px;
+
+    border-radius: 40px;
+
+    border: 3px groove rgba(224, 255, 255, 1);
+    background-color: rgba(140, 251, 251, 1);
+    cursor: pointer;
 }
 
 .confirmation{
@@ -182,6 +212,26 @@
 
     left: 570px;
     background-color: rgba(202, 246, 253, 1);
+    cursor: pointer;
+}
+
+.myOrdersButton:hover{
+    position: absolute;
+    top: 351px;
+
+    border: 1px groove black;
+
+    border-radius: 40px;
+    width: 200px;
+    height: 25px;
+    text-align: center;
+    font-size: 15px;
+    font-style: bold;
+
+    left: 570px;
+    border: 3px groove rgba(224, 255, 255, 1);
+    background-color: rgba(140, 251, 251, 1);
+    cursor: pointer;
 }
 
 .leaveButton{
@@ -198,6 +248,7 @@
     font-style: bold;
 
     background-color: rgba(202, 246, 253, 1);
+    cursor: pointer;
 }
 
 .sorry{
