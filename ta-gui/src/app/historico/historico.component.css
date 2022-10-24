@@ -1,16 +1,10 @@
-html {
-    font-size: 10px;
-}
-
-html {
-    background-color: #E0FFFF;
-}
-
 body {
-    width: 100%;
-    margin: 0 auto;
-    background-color: #E0FFFF;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(224, 255, 255, 1);
 }
+
 
 .titulo {
     width: 100%;

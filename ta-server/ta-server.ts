@@ -15,6 +15,11 @@ service.addProduct("Echo Dot 4Gen", 379.05, "Smart Speaker com Alexa - Cor Preta
 service.addProduct("Projetor Blulory", 659.00, "Com 4K 1200 Lux e UHD Nativo 1280*720p, LCD Video Beamer Compatível com Android OS/Tablet/PC", "Projetor Blulory.jpg");
 service.addProduct("Galaxy Tab S7 FE", 3719.00, 'TABLET SAMSUNG T735 com 4G e memoria RAM, 12.4", 128GB de memoria interna. Cor: PRETO MAN', "Galaxy Tab.jpg");
 service.addProduct("Smart TV Samsung", 5299.00, "Smart TV Samsung 50 polegadas UHD 4K 2021", "Smart TV.jpg");
+service.addProduct("Drone DJI", 2499.99, "Drone Integrado com Sensor CMOS e Câmera 4K para gravação de videos", "Drone.jpg");
+service.addProduct("Headphone Sony", 2077.00, "Fone sem Fio, Conexão Bluetooth 5.1, 30h de bateria, espumas macias e abs flexivel", "Headphone.jpg");
+service.addProduct("SoundBar JBL", 1120.00, "SoundBar de Design compacto e som Dolby Digital com facil conexão", "JBL, Soundbar.jpg");
+service.addProduct("Fire TV Stick Lite", 217.55, "Fire TV Amazon Stick Lite com Controle Remoto Lite por Voz com Alexa - Modelo 2020", "Fire TV.jpg");
+
 
 service.addProductClient(0, 0, 1);
 service.addProductClient(0, 1, 2);
@@ -70,6 +75,16 @@ taserver.get('/client/:id/orders', function (req: express.Request, res: express.
   const id: number = <number><unknown>req.params.id;
   try {
     res.status(200).send(JSON.stringify(service.getClient(id).getOrder()));
+  } catch (err) {
+    const { message } = err;
+    res.status(400).send(message);
+  }
+})
+
+taserver.get('/products', function (req: express.Request, res: express.Response) {
+  
+  try {
+    res.status(200).send(JSON.stringify(service.getProducts()));
   } catch (err) {
     const { message } = err;
     res.status(400).send(message);

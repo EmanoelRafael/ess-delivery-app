@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { HistoricoComponent } from "./historico.component";
 import { CancelamentoComponent } from "./cancelamento/cancelamento.component";
 
-const cartRouts = [
+const historicoRouts = [
     {path: 'historico', component: HistoricoComponent, children: [
         {path: 'cancelamento/:code', component: CancelamentoComponent}
     ]},
@@ -11,7 +11,7 @@ const cartRouts = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(cartRouts)],
+    imports: [RouterModule.forChild(historicoRouts)],
     exports: [RouterModule]
 })
 export class HistoricoRoutingModule {}

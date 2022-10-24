@@ -3,21 +3,19 @@ import { NgModule } from "@angular/core";
 import { ComponentsModule } from "../components/header/components.module";
 import { StoreService } from "../store.service";
 
-import { CartComponent } from "./cart.component";
-import { CartRoutingModule } from "./cart.routing.module";
-import { ConfirmComponent } from './confirm/confirm.component';
+import { HomeComponent } from "./home.component";
+import { HomeRoutingModule } from "./home.routing.module";
 
 @NgModule({
     imports: [
         CommonModule,
-        CartRoutingModule,
+        HomeRoutingModule,
         ComponentsModule
     ],
-    exports: [CartComponent, ConfirmComponent],
+    exports: [HomeComponent],
     declarations: [
-        CartComponent,
-        ConfirmComponent
+        HomeComponent
     ],
     providers: [StoreService]
 })
-export class CartModule {}
+export class HomeModule {}

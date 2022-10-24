@@ -1,24 +1,4 @@
 <html>
-
-<body>
-  <header>
-    <nav class="navBar">
-      <button class="logoButton" routerLink="/">
-        <img src="../assets/logo.png" class="logoFig" alt="">
-      </button>
-      <div class="searchBox">
-        <input type="text" class="searchInput" placeholder="Encontre um Produto">
-        <button class="searchButton">
-          <img class="magGlass" src="../assets/lupa.png" alt="">
-        </button>
-      </div>
-      <button class="cartButton" routerLink="/cart">
-        <img class="cartFig" src="../assets/cart.png" alt="">
-      </button>
-      <button class="myOrderButton" routerLink="/historico">Meus Pedidos</button>
-    </nav>
-  </header>
-  <router-outlet></router-outlet>
-</body>
-
+<base href="/home">
+<router-outlet></router-outlet>
 </html>
