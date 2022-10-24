@@ -11,6 +11,7 @@ import { CartModule } from './cart/cart.module';
 import { HistoricoModule } from "./historico/historico.module";
 import { HomeModule } from './home/home.module';
 import { ComponentsModule } from './components/header/components.module';
+import { CatalogComponent } from './catalog/catalog.component';
 
 @NgModule({
   declarations: [

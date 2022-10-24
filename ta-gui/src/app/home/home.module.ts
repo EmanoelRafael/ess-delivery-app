@@ -1,3 +1,4 @@
+import { CatalogComponent } from './../catalog/catalog.component';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ComponentsModule } from "../components/header/components.module";
@@ -10,11 +11,12 @@ import { HomeRoutingModule } from "./home.routing.module";
     imports: [
         CommonModule,
         HomeRoutingModule,
-        ComponentsModule
+        ComponentsModule,
     ],
     exports: [HomeComponent],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        CatalogComponent
     ],
     providers: [StoreService]
 })

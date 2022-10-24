@@ -6,10 +6,7 @@ body {
 }
 
 .categories{
-    position: absolute;
     padding: 10px;
-    top: 150px;
-    left: 70px;
     height: 350px;
     width: 200px;
     border: 1px solid black;
@@ -33,10 +30,8 @@ body {
 }
 
 .socialMedia{
-    position: absolute;
     padding: 10px;
-    top: 570;
-    left: 70px;
+    margin-top: 10px;
     height: 120px;
     width: 200px;
     border: 1px solid black;
@@ -61,11 +56,9 @@ body {
 }
 
 .productList{
-    position: absolute;
     /*border: 1px solid black;*/
     padding: 30px;
-    top: 150px;
-    left: 370px;
+    margin-left: 100px;
     width: 1050px;
     height: 550px;
     display: flex;
@@ -113,7 +106,7 @@ body {
     width: 150px;
     height: 220px;
     align-items: center;
-    
+
 }
 
 .pictureDiv{
@@ -163,4 +156,10 @@ body {
     font-size: 15px;
     background-color: rgba(224, 255, 255, 1);
     cursor: pointer;
+}
+
+.lateral-nav {
+  position: fixed;
+  top: 120px;
+  left: 10px;
 }

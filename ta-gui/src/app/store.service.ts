@@ -1,3 +1,4 @@
+import { Product } from './../../../common/product';
 import { Cart } from '../../../common/cart';
 import { Order } from '../../../common/order';
 import { Client } from '../../../common/client';
@@ -5,7 +6,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
-import { Product } from '../../../common/product';
 
 @Injectable()
 export class StoreService {
@@ -39,8 +39,12 @@ export class StoreService {
         return this.http.get<Order>(this.taURL + `/client/${this.clientId}/orders`, { headers: this.headers }).pipe(retry(2));
     }
 
-    getProducts(): Observable<Array<Product>> {
-        return this.http.get<Array<Product>>(this.taURL + `/products`, { headers: this.headers }).pipe(retry(2));
+    getProducts()/*: Observable<Array<Product>>*/ {
+      return [
+        new Product("Drone", 330.00, 'Drone DJI', 'Drone.jpg'),
+        new Product("Drone", 330.00, 'Drone DJI', 'Drone.jpg')
+      ]
+        // return this.http.get<Array<Product>>(this.taURL + `/products`, { headers: this.headers }).pipe(retry(2));
     }
 
     cancelOrder(code: string): Observable<string> {
