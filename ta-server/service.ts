@@ -75,17 +75,19 @@ export class Service {
         const client: Client = this.getClient(clientId);
 
         var validEmail: boolean = this.verifyEmail(client.email);
-        var validPayment: boolean = true; 
+        var validPayment: boolean = true;
         //Verificar o Email
 
         if (validPayment && validEmail) {
             const code = this.generateOrderCode(client);
             const order = client.addOrder(code);
+
             this.orders.push(order)
             this.dataBase.setClients(this.clients);
             this.dataBase.setOrders(this.orders);
             this.dataBase.updateDB("c");
             this.dataBase.updateDB("o");
+
             this.sendMail(client, "placed", code);
             return code;
         } else {
@@ -95,38 +97,41 @@ export class Service {
     }
 
 
-    public generateOrderCode(client: Client): string{
+    public generateOrderCode(client: Client): string {
         var code: string = "";
-        if (client.cart.getProducts().length>0) {
+        if (client.cart.getProducts().length > 0) {
             code = "" + client.name[0] + client.cart.getProducts()[0][0].name[0] + this.orders.length + "FS";
-        
-        }else{
+
+        } else {
             code = "fail"
         }
-                //adicionar funcionalidade: Verificar se o codigo do pedido ja nao existe
+        //adicionar funcionalidade: Verificar se o codigo do pedido ja nao existe
         return code;
     }
 
-    public cancelOrder(clientId: number,orderCode: string): string{
+    public cancelOrder(clientId: number, orderCode: string): string {
         const client: Client = this.getClient(clientId);
         var validEmail: boolean = this.verifyEmail(client.email);
         //Verificar o Email
+
 
         if(validEmail) {
             this.orders.find(({code}) => code == orderCode).setStatus("canceled");
             this.sendMail(this.getClient(clientId),"cancelado", orderCode);
             this.dataBase.setOrders(this.orders);
             this.dataBase.updateDB("o");
+
             return "canceled";
-            
+
         } else {
             return "fail";
         }
-        
+
     }
 
-    public verifyEmail(email: string): boolean{
+    public verifyEmail(email: string): boolean {
         //Funcao para ser implementada
+
         if(email == "emanoelrafael2020@gmail.com"){
             return true;
         }else{
@@ -134,7 +139,7 @@ export class Service {
         }
     }
 
-    public sendMail(client:Client, type: string, orderCode: string): boolean{
+    public sendMail(client: Client, type: string, orderCode: string): boolean {
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -143,16 +148,16 @@ export class Service {
                 pass: this.COMPANY_PASS
             }
         });
-        
+
         var mailOptions = {
             from: this.COMPANY_EMAIL,
             to: client.getEmail(),
-            subject: type=="placed"?'Fast&Ship - Comprovante de Compra':'Fast&Ship - Comprovante de Cancelamento',
-            text: type=="placed"?this.makeEmailMsgOrdered(client, orderCode):this.makeEmailMsgCancelled(client,orderCode),
-            context: {id:client.getEmail()}
+            subject: type == "placed" ? 'Fast&Ship - Comprovante de Compra' : 'Fast&Ship - Comprovante de Cancelamento',
+            text: type == "placed" ? this.makeEmailMsgOrdered(client, orderCode) : this.makeEmailMsgCancelled(client, orderCode),
+            context: { id: client.getEmail() }
         };
 
-        transporter.sendMail(mailOptions,function (error) {
+        transporter.sendMail(mailOptions, function (error) {
             if (error) {
                 false;
             } else {
@@ -163,16 +168,16 @@ export class Service {
         return true;
     }
 
-    public makeEmailMsgOrdered(client: Client, orderCode:string): string{
+    public makeEmailMsgOrdered(client: Client, orderCode: string): string {
         const order: Order = this.getOrderByCode(orderCode);
         var msg: string = "";
-        
+
         msg += `Ola, ${client.name}\n`;
         msg += `Entramos em contato para confirmar o pedido de Cod ${orderCode}:\n`
 
         for (let index = 0; index < order.cart.getProducts().length; index++) {
             const element = order.cart.getProducts()[index];
-            
+
             msg += `${element[1]}X${element[0].getName()}...........${element[0].priceString}\n`;
 
         }
@@ -189,7 +194,7 @@ export class Service {
         return msg;
     }
 
-    public makeEmailMsgCancelled(client: Client, orderCode: string): string{
+    public makeEmailMsgCancelled(client: Client, orderCode: string): string {
         var msg: string = "";
         const order: Order = this.getOrderByCode(orderCode);
 
@@ -199,20 +204,20 @@ export class Service {
 
         for (let index = 0; index < order.cart.getProducts().length; index++) {
             const element = order.cart.getProducts()[index];
-            
+
             msg += `${element[1]}X${element[0].getName()}......${element[0].priceString}\n`;
-            
+
         }
 
         msg += `\nMetodo de Pagamento utilizado: ${order.paymentMethod}\n
         Será enviado um email com as informacoes de devolucao.\n`;
-        
+
         return msg;
     }
 
-    public getOrderByCode(cod: string): Order{
+    public getOrderByCode(cod: string): Order {
 
-        var order: Order = this.orders.find(({code}) => code == cod)
+        var order: Order = this.orders.find(({ code }) => code == cod)
 
         return order;
     }
