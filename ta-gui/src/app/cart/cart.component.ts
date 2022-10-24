@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { Address } from '../../../../common/address';
 
 import { Cart } from '../../../../common/cart';
+import { Product } from '../../../../common/product';
 import { StoreService } from './../store.service';
 
 @Component({
@@ -16,10 +17,12 @@ export class CartComponent implements OnInit {
     constructor(private storeService: StoreService) {};
 
     cart: Cart = new Cart(new Address());
- 
+
     ngOnInit(): void {
-        this.storeService.getCart().subscribe(res => {
-            this.cart = res
-        })
+      this.cart.addProduct( new Product("Echo Dot", 300, "Echo Dot", "Echo Dot.jpg"), 1);
+      this.cart.addProduct( new Product("Fire TV", 300, "Fire TV", "Fire TV.jpg"), 2);
+        // this.storeService.getCart().subscribe(res => {
+        //     this.cart = res
+        // })
     }
 }

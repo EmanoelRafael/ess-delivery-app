@@ -1,7 +1,43 @@
 <html>
 <app-header></app-header>
 <body>
-<div *ngIf="!cart.empty" class="cart">
+
+  <div class="container">
+    <div class="itensHeader">
+      <h2>Seus itens</h2>
+      <h2>Preço</h2>
+    </div>
+
+    <hr class="lineDivider">
+
+    <div class="itensList">
+      <div class="itemCard" *ngFor="let item of cart.getProducts()">
+
+        <div class="containerCard">
+          <img class="itemImg" src="../../assets/{{item[0].getPictureName()}}">
+
+          <div class="itemInfo">
+            <h3 class="itemName">{{item[0].getName()}}</h3>
+            <span class="itemStatus">Status de estoque</span>
+            <span class="itemQtd">{{item[1]}}</span>
+            <a class="removeItemButton">Remover Item</a>
+          </div>
+        </div>
+
+        <span class="itemPrice">{{item[0].priceString}}</span>
+      </div>
+
+      <div class="itensFooter">
+        <span class="subtotal">Subtotal ({{cart.getItemsAmount()}} itens): <b>{{cart.costResume()}}</b></span>
+      </div>
+    </div>
+  </div>
+
+  <button class="cartCheckout">Fechar pedido</button>
+
+
+
+<!-- <div *ngIf="!cart.empty" class="cart">
     <table class="cartTable">
         <tr class="labelLine">
             <th class="imageColumn"></th>
@@ -25,13 +61,13 @@
             <td class="valueColumn" colspan="2">{{cart.stringValue}}</td>
         </tr>
     </table>
-   
+
     <button class="buyButton" routerLink="/cart/confirm">Finalizar Compra</button>
     <router-outlet></router-outlet>
 </div>
 <div *ngIf="cart.empty" class="emptyCart">
     <h1>O Seu Carrinho esta vazio!</h1>
     <div class="emoji">😟</div>
-</div>
+</div> -->
 </body>
 </html>
