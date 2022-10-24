@@ -17,8 +17,15 @@
         <img src="../../assets/twitter.png" class="twitterIcon" alt="">
       </div>
 
-      <div class="productList">
-
-      </div>
+      <section class="productList">
+        <section class="productSection" *ngFor="let product of products">
+          <div class="productInfo">
+            <div class="pictureDiv"><img class="productPicture" src="../../assets/{{product.pictureName}}" alt=""></div>
+            <div class="productName">{{product.name}}</div>
+            <div class="productPrice">{{product.priceString}}</div>
+          </div>
+          <button class="addCartButton">Adicionar ao Carrinho</button>
+        </section>
+      </section>
   </body>
 </html>
