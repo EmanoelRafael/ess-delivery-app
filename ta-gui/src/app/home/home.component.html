@@ -1,23 +1,27 @@
 <html>
   <app-header></app-header>
   <body>
-      <div class="categories">
-        <h1 class="categoryText">CATEGORIAS</h1>
-        <h2 class="category">Tablets</h2>
-        <h2 class="category">Celulares e <br>Comunicação</h2>
-        <h2 class="category">TV, Áudio e <br> Cinema em Casa</h2>
-        <h2 class="category">Acessórios <br> Eletrônicos</h2>
+      <div class="lateral-nav">
+        <div class="categories">
+          <h1 class="categoryText">CATEGORIAS</h1>
+          <h2 class="category">Tablets</h2>
+          <h2 class="category">Celulares e <br>Comunicação</h2>
+          <h2 class="category">TV, Áudio e <br> Cinema em Casa</h2>
+          <h2 class="category">Acessórios <br> Eletrônicos</h2>
+        </div>
 
+        <div class="socialMedia">
+          <h1 class="socialMediaText">Redes Sociais</h1>
+          <img src="../../assets/instagram.png" class="instaIcon" alt="">
+          <img src="../../assets/facebook.png" class="faceIcon" alt="">
+          <img src="../../assets/twitter.png" class="twitterIcon" alt="">
+        </div>
       </div>
 
-      <div class="socialMedia">
-        <h1 class="socialMediaText">Redes Sociais</h1>
-        <img src="../../assets/instagram.png" class="instaIcon" alt="">
-        <img src="../../assets/facebook.png" class="faceIcon" alt="">
-        <img src="../../assets/twitter.png" class="twitterIcon" alt="">
-      </div>
 
-      <section class="productList">
+      <app-catalog></app-catalog>
+
+      <!-- <section class="productList">
         <section class="productSection" *ngFor="let product of products">
           <div class="productInfo">
             <div class="pictureDiv"><img class="productPicture" src="../../assets/{{product.pictureName}}" alt=""></div>
@@ -26,6 +30,6 @@
           </div>
           <button class="addCartButton">Adicionar ao Carrinho</button>
         </section>
-      </section>
+      </section> -->
   </body>
 </html>

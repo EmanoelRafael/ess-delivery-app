@@ -23,6 +23,8 @@ export class Cart {
         this.deliveryDate = "Agosto de Deus"
     }
 
+    
+
     public getProducts(): Array<[Product,number]>{
         return this.products;
     }
@@ -48,4 +50,23 @@ export class Cart {
         return this.deliveryAddress;
     }
 
+    public getItemsAmount(){
+        let amount = 0;
+        this.products.forEach(item => {
+            amount += item[1];
+        });
+        return amount;
+    }
+
+    public costResume(){
+        let cost = 0;
+        this.products.forEach(item => {
+            cost += item[0].getPrice() * item[1];
+        })
+        return cost.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    }
+
+    public cleanCart(){
+        this.products = Array<[Product,number]> ();
+    }
 }

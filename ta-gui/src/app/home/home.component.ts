@@ -14,9 +14,10 @@ export class HomeComponent implements OnInit {
   products: Array<Product> = new Array<Product>();
 
   ngOnInit(): void {
+    // this.products = this.storeService.getProducts();
     this.storeService.getProducts().subscribe((res) => {
       this.products = <Array<Product>> res;
-      console.log(res);
+      // console.log(res);
     })
   }
 

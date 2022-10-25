@@ -11,7 +11,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
     imports: [
         CommonModule,
         CartRoutingModule,
-        ComponentsModule
+        ComponentsModule,
     ],
     exports: [CartComponent, ConfirmComponent],
     declarations: [
