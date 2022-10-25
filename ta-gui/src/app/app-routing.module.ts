@@ -6,6 +6,11 @@ import { HistoricoComponent } from './historico/historico.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
     path: 'acompedidos',
     component: AcompedidosComponent
   },
