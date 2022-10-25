@@ -21,7 +21,7 @@ export class CatalogComponent implements OnInit {
   }
 
   addProductToCart(product: Product, index: number) {
-    this.storeService.addProductToCart(index).subscribe (res => console.log(res));
-    alert(`Produto ${product.name} adicionado ao carrinho!`);
+    let msg = "";
+    this.storeService.addProductToCart(index).subscribe (res => alert(res));
   }
 }

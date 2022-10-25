@@ -65,14 +65,14 @@ export class Service {
 
     public addProductClient(clientId: number, productId: number, qtd: number): string {
         if(this.dataBase.addedProductCart(clientId, productId)){
-            console.log(`Produto de indice ${productId} adicionado anteriormente`);
-            return "Produto adicionado anteriormente";
+            console.log(`Você já adicionou o produto ${this.products[productId].name}`);
+            return `Você já adicionou o produto ${this.products[productId].name}`;
         } else {
-            console.log(`Produto de indice ${productId} adicionado agora`);
+            console.log(`${this.products[productId].name} adicionado ao carrinho`);
             this.getClient(clientId).getCart().addProduct(this.getProduct(productId), qtd);
             this.dataBase.setClients(this.clients)
             this.dataBase.updateDB("c");
-            return `Produto de indice ${productId} adicionado agora`;
+            return `${this.products[productId].name} adicionado ao carrinho`;
         }
         //Obs: Itens para refatoraçao -> Adicionar verificacoes de retorno para cliente e produto
         //Obs: Para a refatoracao -> Adicionar a quantidade de produtos no estoque
