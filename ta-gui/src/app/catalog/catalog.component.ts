@@ -1,3 +1,4 @@
+import { StoreService } from 'src/app/store.service';
 import { CatalogService } from './catalog.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../../common/product';
@@ -10,13 +11,17 @@ import { Product } from '../../../../common/product';
 export class CatalogComponent implements OnInit {
 
   productsList: Product[] = [];
-  constructor(private catalogService: CatalogService) { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
-    this.productsList = this.catalogService.catalog;
+    this.storeService.getProducts().subscribe( (res) => {
+      console.log(res);
+      this.productsList = res;
+    });
   }
 
-  addProductToCart() {
-    alert('Produto adicionado ao carrinho')
+  addProductToCart(product: Product, index: number) {
+    this.storeService.addProductToCart(index).subscribe (res => console.log(res));
+    alert(`Produto ${product.name} adicionado ao carrinho!`);
   }
 }

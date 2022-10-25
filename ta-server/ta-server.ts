@@ -114,6 +114,22 @@ taserver.post('/client/:id/orders/:code',function (req: express.Request, res: ex
   }
 })
 
+taserver.post('/client/:id/cart/product/:pid', function (req: express.Request, res: express.Response) {
+  // console.log('recebeu');
+  
+  const clientId: number = <number><unknown>req.params.id;
+  const productIndex: number = <number><unknown>req.params.pid;
+
+  console.log(`Adicionando o produto de index ${productIndex} ao cliente ${clientId}`);
+  
+  try {
+    res.status(200).send(JSON.stringify(service.addProductClient(clientId, productIndex, 1)));
+  } catch (err) {
+    res.status(400).send('Erro ao adicionar produto');
+  }
+})
+
+
 taserver.listen(3000, function () {
   console.log('Example app listening on port 3000!!!');
 })

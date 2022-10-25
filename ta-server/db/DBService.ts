@@ -168,4 +168,15 @@ export class DBService {
         var productCopy: Product = new Product(product.name,product.price,product.description, product.pictureName);
         return productCopy;
     }
+
+    public addedProductCart(idClient: number, index: number) {
+        let flag = false;
+        this.getClients()[idClient].getCart().products.forEach( item => {
+            if(item[0] === this.getProducts()[index]){
+                flag = true;
+            }
+        });
+
+        return flag;
+    }
 }
