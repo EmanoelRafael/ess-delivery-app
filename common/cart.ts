@@ -20,7 +20,7 @@ export class Cart {
         this.shipping = 0;
         this.stringShipping = this.shipping.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
         this.deliveryAddress = deliveryAddress;
-        this.deliveryDate = "Agosto de Deus"
+        this.deliveryDate = "deliveryDate"
     }
 
     
