@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './checkout/checkout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AcompedidosComponent } from './acompedidos/acompedidos.component';
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'historico',
     component: HistoricoComponent
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
   }
 ];
 

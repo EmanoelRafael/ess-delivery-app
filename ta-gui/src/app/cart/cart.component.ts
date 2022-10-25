@@ -19,10 +19,28 @@ export class CartComponent implements OnInit {
     cart: Cart = new Cart(new Address());
 
     ngOnInit(): void {
-      this.cart.addProduct( new Product("Echo Dot", 300, "Echo Dot", "Echo Dot.jpg"), 1);
-      this.cart.addProduct( new Product("Fire TV", 300, "Fire TV", "Fire TV.jpg"), 2);
-        // this.storeService.getCart().subscribe(res => {
-        //     this.cart = res
-        // })
+      // this.cart.addProduct( new Product("Echo Dot", 300, "Echo Dot", "Echo Dot.jpg"), 1);
+      // this.cart.addProduct( new Product("Fire TV", 300, "Fire TV", "Fire TV.jpg"), 2);
+
+      this.storeService.getCart().subscribe (res => {
+        this.cart.cleanCart();
+        // console.log(res.products);
+
+        res.products.forEach( (item) => {
+          // console.log(item[0]);
+          let productRes = item[0];
+          // console.log(productRes.name);
+
+          let productAdd = new Product(
+            productRes.name,
+            productRes.price,
+            productRes.description,
+            productRes.pictureName
+          );
+
+          this.cart.addProduct(productAdd, item[1]);
+
+        } )
+      });
     }
 }

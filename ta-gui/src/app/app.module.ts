@@ -12,10 +12,12 @@ import { HistoricoModule } from "./historico/historico.module";
 import { HomeModule } from './home/home.module';
 import { ComponentsModule } from './components/header/components.module';
 import { CatalogComponent } from './catalog/catalog.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

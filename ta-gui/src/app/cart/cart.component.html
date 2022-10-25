@@ -19,8 +19,8 @@
           <div class="itemInfo">
             <h3 class="itemName">{{item[0].getName()}}</h3>
             <span class="itemStatus">Status de estoque</span>
-            <span class="itemQtd">{{item[1]}}</span>
-            <a class="removeItemButton">Remover Item</a>
+            <span class="itemQtd">Qtd: {{item[1]}}</span>
+            <button class="removeItemButton" >Remover Item</button>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <button class="cartCheckout">Fechar pedido</button>
+  <button class="cartCheckout" routerLink="checkout">Fechar pedido</button>
 
 
 
